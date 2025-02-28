@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Actualizare Status Comandă</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<h2>Actualizare Status Comandă</h2>
+
+<!-- Formularul de actualizare a statusului -->
+<form action="/comenzi/updateStatusComanda" method="post">
+    <input type="hidden" name="idComanda" th:value="${comanda.idComanda}" />
+
+    <!-- Select pentru status -->
+    <select name="status" required>
+        <option value="In Procesare" th:selected="${comanda.status == 'In Procesare' ? 'selected' : ''}">In Procesare</option>
+        <option value="Livrata" th:selected="${comanda.status == 'Livrata' ? 'selected' : ''}">Livrata</option>
+        <option value="Anulata" th:selected="${comanda.status == 'Anulata' ? 'selected' : ''}">Anulata</option>
+        <option value="Expediata" th:selected="${comanda.status == 'Expediata' ? 'selected' : ''}">Expediata</option>
+    </select>
+
+    <button type="submit">Salvează Modificările</button>
+</form>
+
+<!-- Buton pentru a anula și a reveni la lista de comenzi -->
+<a href="/comenzi"><button>Înapoi la Comenzi</button></a>
+
+</body>
+</html>

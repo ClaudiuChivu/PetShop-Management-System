@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Statistici - PetShop</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<!-- Meniul de navigare -->
+<header>
+    <div class="logo">
+        <h1>PetShop</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/">Pagina Principală</a></li>
+            <li><a href="/produse">Vezi Produse</a></li>
+            <li><a href="/comenzi">Vezi Comenzi</a></li>
+            <li><a href="/comenzi/statistici">Statistici</a></li> <!-- Link către Statistici -->
+        </ul>
+    </nav>
+</header>
+
+<!-- Formular de filtrare -->
+<div class="filter-container">
+    <form method="get" action="/comenzi/statistici">
+        <label for="statisticaSelect">Selectează statistica dorită:</label>
+        <select name="statistica" id="statisticaSelect">
+            <option value="numarTotalComenzi">Număr total comenzi</option>
+            <option value="venitTotal">Venit total</option>
+            <option value="mediaValoareComenzi">Media valorii comenzilor</option>
+            <option value="celMaiPopularStatus">Cel mai popular status</option>
+        </select>
+        <button type="submit" class="btn">Filtrează</button>
+    </form>
+</div>
+
+<!-- Conținutul Paginii Statistici -->
+<div class="statistici-container">
+    <h2>Statistici Comenzi</h2>
+
+    <!-- Afișează statistica dorită -->
+    <div class="statistic" th:if="${statistica == 'numarTotalComenzi'}">
+        <h3>Număr total comenzi</h3>
+        <p th:text="${numarTotalComenzi}">Numărul total de comenzi</p>
+    </div>
+
+    <div class="statistic" th:if="${statistica == 'venitTotal'}">
+        <h3>Venit total</h3>
+        <p th:text="${venitTotal}">Venitul total al comenzilor</p>
+    </div>
+
+    <div class="statistic" th:if="${statistica == 'mediaValoareComenzi'}">
+        <h3>Media valorii comenzilor</h3>
+        <p th:text="${mediaValoareComenzi}">Media valorii comenzilor</p>
+    </div>
+
+    <div class="statistic" th:if="${statistica == 'celMaiPopularStatus'}">
+        <h3>Cel mai popular status</h3>
+        <p th:text="${celMaiPopularStatus}">Cel mai popular status</p>
+    </div>
+</div>
+
+</body>
+</html>

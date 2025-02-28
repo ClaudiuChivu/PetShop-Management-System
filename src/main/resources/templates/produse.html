@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Produse</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<!-- Meniul de navigare -->
+<header>
+    <div class="logo">
+        <h1>PetShop</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/">Pagina Principală</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Conținutul Paginii Produse -->
+<div class="products-container">
+    <h2>Lista Produse</h2>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nume</th>
+            <th>Tip Hrana</th>
+            <th>Preț</th>
+            <th>Stoc</th>
+            <th>Acțiuni</th>
+        </tr>
+        <tr th:each="produs : ${produse}">
+            <td th:text="${produs.idProdus}"></td>
+            <td th:text="${produs.numeProdus}"></td>
+            <td th:text="${produs.tipHrana}"></td>
+            <td th:text="${produs.pret}"></td>
+            <td th:text="${produs.stoc}"></td>
+            <td>
+                <a th:href="@{/editareProdus(id=${produs.idProdus})}"><button>Editează</button></a>
+                <a th:href="@{/confirmaStergere(id=${produs.idProdus})}"><button>Șterge</button></a>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Formular pentru adăugarea unui produs -->
+    <h2>Adaugă un produs</h2>
+
+    <!-- Afișează mesajul de eroare -->
+    <div th:if="${eroare}" style="color: red;">
+        <p th:text="${eroare}"></p>
+    </div>
+
+    <form action="/adaugareProdus" method="post">
+        <input type="text" name="numeProdus" placeholder="Nume produs" required>
+        <input type="text" name="tipHrana" placeholder="Tip hrană" required>
+        <input type="number" name="pret" placeholder="Preț" step="0.01" required>
+        <input type="number" name="stoc" placeholder="Stoc" required>
+        <button type="submit">Adaugă</button>
+    </form>
+</div>
+
+<script src="/scripts.js"></script>
+</body>
+</html>

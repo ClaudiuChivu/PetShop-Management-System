@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionare Comenzi</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<!-- Meniul de navigare -->
+<header>
+    <div class="logo">
+        <h1>PetShop - Gestionare Comenzi</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/">Pagina Principală</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Formular de Filtrare a Comenzilor -->
+<section class="filter-section">
+    <h2>Filtrare Comenzi</h2>
+    <form action="/comenzi" method="get">
+        <label for="status">Status:</label>
+        <select id="status" name="status">
+            <option value="">Toate</option>
+            <option value="Livrata">Livrata</option>
+            <option value="Anulata">Anulata</option>
+            <option value="In Procesare">In Procesare</option>
+            <option value="Expediata">Expediata</option>
+        </select>
+
+        <label for="dataComenzii">Data Comenzii:</label>
+        <input type="text" id="dataComenzii" name="dataComenzii">
+
+        <label for="idClient">ID Client:</label>
+        <input type="text" id="idClient" name="idClient">
+
+        <button type="submit">Filtrează</button>
+    </form>
+
+</section>
+
+<!-- Tabelul Comenzilor -->
+<div class="orders-container">
+    <h2>Lista Comenzi</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID Comandă</th>
+            <th>Client</th>
+            <th>Data Comenzii</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Acțiuni</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="comanda : ${comenzi}">
+            <td th:text="${comanda.idComanda}"></td>
+            <td th:text="${comanda.idClient}"></td>
+            <td th:text="${comanda.dataComenzii}"></td>
+            <td th:text="${comanda.total}"></td>
+            <td th:text="${comanda.status}"></td>
+            <td>
+                <a th:href="@{'/comenzi/updateStatus'(idComanda=${comanda.idComanda})}">
+                    <button type="button">Schimbă Status</button>
+                </a>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

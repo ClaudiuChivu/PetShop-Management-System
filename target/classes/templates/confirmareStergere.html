@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Confirma Ștergerea</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<h2>Esti sigur ca vrei sa stergi acest produs?</h2>
+
+<!-- Formularul de confirmare -->
+<form action="/stergeProdus" method="post">
+    <input type="hidden" name="id" th:value="${idProdus}" /> <!-- ID-ul produsului pentru ștergere -->
+    <button type="submit">Confirma</button>
+</form>
+
+<!-- Buton de anulare -->
+<a href="/produse"><button>Anulează</button></a>
+</body>
+</html>

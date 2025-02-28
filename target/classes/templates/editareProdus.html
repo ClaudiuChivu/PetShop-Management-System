@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editare Produs</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<h2>Editare Produs</h2>
+
+<!-- Afișare erori, dacă există -->
+<div th:if="${erori != null}">
+    <ul>
+        <li th:each="eroare : ${erori}" th:text="${eroare}"></li>
+    </ul>
+</div>
+
+<!-- Formularul de editare -->
+<form action="/salveazaModificari" method="post">
+    <input type="hidden" name="id" th:value="${produs.idProdus}" />
+    <input type="text" name="numeProdus" th:value="${produs.numeProdus}" placeholder="Nume produs" required />
+    <input type="text" name="tipHrana" th:value="${produs.tipHrana}" placeholder="Tip hrană" required />
+    <input type="number" name="pret" th:value="${produs.pret}" placeholder="Preț" step="0.01" required />
+    <input type="number" name="stoc" th:value="${produs.stoc}" placeholder="Stoc" required />
+    <button type="submit">Salvează Modificările</button>
+</form>
+
+<!-- Buton pentru a anula și a reveni la lista de produse -->
+<a href="/produse"><button>Înapoi la Produse</button></a>
+
+</body>
+</html>
